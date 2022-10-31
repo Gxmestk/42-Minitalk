@@ -32,6 +32,7 @@ static void	send_byte(int spid, int c)
 			exit(1);
 		}
 		bc++;
+		g_bitcount++;
 		while (g_response != 1)
 			;
 		g_response = 0;
@@ -44,7 +45,7 @@ static void	handler(int signo, siginfo_t *info, void *context)
 	(void)info;
 	(void)signo;
 	if (signo == SIGUSR1)
-		g_bitcount++;
+		g_bitcount--;
 	g_response = 1;
 }
 
@@ -107,7 +108,7 @@ int	main(int argc, char **argv)
 	while (argv[2][i] != '\0')
 		send_byte(spid, argv[2][i++]);
 	send_byte(spid, argv[2][i++]);
-	if (g_bitcount > 0)
+	if (g_bitcount == 0)
 		ft_printf("Successfully receive the inforamtion.\n");
 	return (0);
 }
