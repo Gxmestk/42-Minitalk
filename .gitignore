@@ -1,0 +1,17 @@
+# Object files
+*.o
+
+# Executables
+server
+client
+
+# Libraries
+*.a
+
+# OS files
+.DS_Store
+.idea/
+.vscode/
+
+# Debug
+*.out
